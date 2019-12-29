@@ -14,8 +14,8 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/', methods=['GET'])
-def home():
+@app.route('/comics', methods=['GET'])
+def index():
 
     api_key = '5254c165a43cf4186f83c78079d1bcff35f1c751'
     url = 'https://comicvine.gamespot.com/api/issues/?api_key={}&sort=cover_date:desc&format=json&sort=cover_date:desc'.format(api_key)
@@ -48,6 +48,35 @@ def home():
         return {"Error code": "{}".format(e.code)}
     except:
         pass
+
+@app.route('/comic/<id>')
+def view_comic(id):
+    api_key = '5254c165a43cf4186f83c78079d1bcff35f1c751'
+    url = 'https://comicvine.gamespot.com/api/issue/4000-{}/?api_key={}&sort=cover_date:desc&format=json&sort=cover_date:desc'.format(id, api_key)
+
+
+    try:
+        with urllib.request.urlopen(url) as response:
+            jsonResponse = json.loads(response.read().decode('utf-8'))
+
+            result = jsonResponse.get('results')
+            # comic_list = []
+
+            return result
+
+            # context = {
+            #     'comics': comic_list
+            # }
+
+            # return comics
+            # return render_template('index.html', **context)
+    except HTTPError as e:
+        return {"Error code": "{}".format(e.code)}
+    except:
+        pass
+
+    return render_template('show.html')
+
 
 
 if __name__ == '__main__':

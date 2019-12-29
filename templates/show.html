@@ -90,45 +90,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12 my-3">
-            <div class="pull-right">
-                <div class="btn-group">
-                    <button class="btn" id="list"><i class="fa fa-bars"></i> List</button> 
-                    <button class="btn active" id="grid"><i class="fa fa-th-large"></i> Grid</button>
-                </div>
-            </div>
-        </div>
-    </div> 
-    <div id="products" class="row view-group">
-        {% for comic in comics %}
-                <div class="item col-xs-4 col-lg-4">
-                    <div class="thumbnail card">
-                        <div class="img-event">
-                            <a class="p-2 text-dark" href="/comic/{{ comic.id }}">
-                                <img src="{{ comic.image }}" alt="{{ comic.id }}">
-                            </a>
-                        </div>
-                        <div class="caption card-body">
-                            <h4 class="group card-title inner list-group-item-heading">
-                                {{ comic.name }}</h4>
-                            <p class="group inner list-group-item-text">
-                                {{ comic.date }}</p>
-                            <p class="group inner list-group-item-text">
-                                {{ comic.id }}</p>
-                            <div class="row">
-                                <div class="col-xs-12 col-md-6">
-                                   
-                                </div>
-                                <div class="col-xs-12 col-md-6">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        {% endfor %}
-            </div>
+    <h1>Show</h1>
 </div>
 </body>
 
