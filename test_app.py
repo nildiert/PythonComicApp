@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, Api
 from flask_cors import CORS
+from flask import render_template
 
 
 import json
@@ -25,7 +26,6 @@ def home():
 
             result = jsonResponse.get('results')
             comic_list = []
-            comics = {}
 
             for item in result:
                 comic_item = {}
@@ -36,9 +36,14 @@ def home():
                 comic_item.update({"id": id_comic, "name": name, "date": date, "image": img})
                 comic_list.append(comic_item)
 
-            comics.update({'data':comic_list})
+            context = {
+                'comics': comic_list
+            }
 
-            return comics
+            # return comics
+            return render_template('index.html', **context)
+
+
     except HTTPError as e:
         return {"Error code": "{}".format(e.code)}
     except:
