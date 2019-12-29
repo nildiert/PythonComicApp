@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,redirect, url_for
 from flask_restful import Resource, Api
 from flask_cors import CORS
 from flask import render_template
@@ -13,6 +13,9 @@ from urllib.error import HTTPError
 app = Flask(__name__)
 CORS(app)
 
+# @app.route('/')
+# def home():
+#     redirect('/comics')
 
 @app.route('/comics', methods=['GET'])
 def index():
