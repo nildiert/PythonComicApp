@@ -17,7 +17,7 @@ CORS(app)
 def home():
 
     api_key = '5254c165a43cf4186f83c78079d1bcff35f1c751'
-    url = 'https://comicvine.gamespot.com/api/issues/?api_key={}&sort=cover_date:desc&format=json'.format(api_key)
+    url = 'https://comicvine.gamespot.com/api/issues/?api_key={}&sort=cover_date:desc&format=json&sort=cover_date:desc'.format(api_key)
 
     try:
         with urllib.request.urlopen(url) as response:
