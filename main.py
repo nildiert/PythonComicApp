@@ -1,24 +1,23 @@
-from flask import Flask,redirect, url_for
-from flask_restful import Resource, Api
+from flask import redirect, url_for, render_template, make_response
 from flask_cors import CORS
-from flask import render_template
-
-
 import json
-
 import urllib.request
 from urllib.error import HTTPError
 
+from app import create_app
 
-app = Flask(__name__)
+
+app = create_app()
 CORS(app)
 
-# @app.route('/')
-# def home():
-#     redirect('/comics')
+@app.route('/')
+def index():
+    response = make_response(redirect('/comics'))
+
+    return response
 
 @app.route('/comics', methods=['GET'])
-def index():
+def home():
 
     api_key = '5254c165a43cf4186f83c78079d1bcff35f1c751'
     url = "https://comicvine.gamespot.com/api/issues/?api_key={}&field_list=name,id,date_added,issue_number,image,volume&sort=date_added:desc&format=json".format(api_key)
