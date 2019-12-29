@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
         .view-group {
@@ -34,7 +34,7 @@
             padding: 0 1rem;
             border: 0;
         }
-        
+
 
         .item.list-group-item .img-event {
             float: left;
@@ -70,7 +70,7 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             padding: 5px;
-            width: 150px;
+            width: 250px;
         }
     </style>
 
@@ -78,20 +78,67 @@
 
 <body>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-            $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
-            $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+    <script>
+        $(document).ready(function () {
+            $('#list').click(function (event) { event.preventDefault(); $('#products .item').addClass('list-group-item'); });
+            $('#grid').click(function (event) { event.preventDefault(); $('#products .item').removeClass('list-group-item'); $('#products .item').addClass('grid-group-item'); });
         });
-</script>
-<!------ Include the above in your HEAD tag ---------->
+    </script>
+    <!------ Include the above in your HEAD tag ---------->
 
-<div class="container">
-    <h1>Show</h1>
-</div>
+    <div class="container">
+        <h1>Show</h1>
+        <div class="row">
+            <div class="col-lg-6 my-3">
+                <ul>
+                    <li>
+                        <h4>Characters</h4>
+                        <ul>
+                            {% for character in comic.characters %}
+                            <li>
+                                <img src="{{ character.image }}" alt="" style="width: 50px;">
+                                {{ character.name }}
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>Teams</h4>
+                        <ul>
+                            {% for team in comic.teams %}
+                            <li>
+                                <img src="{{ team.image }}" alt="" style="width: 50px;">
+                                {{ team.name }}
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>Locations</h4>
+                        <ul>
+                            {% for location in comic.locations %}
+                            <li>
+                                <img src="{{ location.image }}" alt="" style="width: 50px;">
+                                {{ location.name }}
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 my-3">
+                <img src="{{ comic.image }}" alt="">
+            </div>
+        </div>
+
+
+    </div>
 </body>
 
 </html>
