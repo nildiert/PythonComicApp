@@ -7,6 +7,11 @@ from app import create_app
 
 app = create_app()
 
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', error=error)
+
 @app.route('/')
 def home():
     response = make_response(redirect('/comics'))
