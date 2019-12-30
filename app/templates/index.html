@@ -12,7 +12,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="container ml-5">
         <div class="text-center mt-5">
             <h1>ComicBook</h1>
         </div>
@@ -26,10 +26,10 @@
         </div>
         <div id="products" class="row list-group">
             {% for comic in comics %}
-            <div class="item  col-xs-4 col-lg-3">
+            <div class="item  col-xs-12 col-md-6 col-lg-3">
                 <div class="thumbnail">
                     <a class="p-2 text-dark" href="/comic/{{ comic.id }}">
-                        <img class="group list-group-image" src="{{ comic.image }}" alt="" />
+                        <img class="group list-group-image img-item" src="{{ comic.image }}" alt="" />
                     </a>
                     <div class="caption text-center">
                         <h3 class="group inner list-group-item-heading">
