@@ -7,13 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/show.css')}}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-    <style>
-        .img-logo {
-            width: 50px;
-            height: 50px;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -22,42 +18,89 @@
         <div class="text-center mt-5">
             <h1>ComicBook</h1>
         </div>
-        <div class="well well-sm separated">
-            <strong>Latest Issues</strong>
-            <div class="btn-group">
-                <a href="#" id="list" class="btn btn-sm"><span class="glyphicon glyphicon-th-list">
-                    </span>List</a> <a href="#" id="grid" class="btn  btn-sm"><span
-                        class="glyphicon glyphicon-th"></span>Grid</a>
-            </div>
-        </div>
-        <div id="products" class="row list-group">
 
-            <div class="col-xs-4 col-lg-7">
-                <div>
-                    <h2>Characters</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-7 col-sm-12">
+
+                        <div class="row">
+
+                            <div class="title-item">
+                                <h2>Characters</h2>
+
+                            </div>
+                            <div class="left-margin">
+                                {% for character in comic.characters %}
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="row margin-item">
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <img class="img-logo" src="{{ character.image }}" alt="">
+                                        </div>
+                                        <div class="col-md-10 text-left col-sm-10 col-xs-10 text-success">
+                                            <p class="item-name">{{ character.name }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="title-item">
+                                <h2>Teams</h2>
+
+                            </div>
+                            <div class="left-margin">
+                                {% for team in comic.teams %}
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="row margin-item">
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <img class="img-logo" src="{{ team.image }}" alt="">
+                                        </div>
+                                        <div class="col-md-10 text-left col-sm-10 col-xs-10 text-success">
+                                            <p class="item-name">{{ team.name }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="title-item">
+                                <h2>Location</h2>
+
+                            </div>
+                            <div class="left-margin">
+                                {% for location in comic.locations %}
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="row margin-item">
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <img class="img-logo" src="{{ location.image }}" alt="">
+                                        </div>
+                                        <div class="col-md-10 text-left col-sm-10 col-xs-10 text-success">
+                                            <p class="item-name">{{ location.name }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col-sm-12">
+                        <img class="img-cover" src="{{ comic.image }}" alt="" />
+                    </div>
                 </div>
             </div>
-            {% for character in comic.characters %}
-            <div class="col-lg-6">
-                <img class="img-logo" src="{{ character.image }}" alt="">
-                <p>{{ character.name }}</p>
-            </div>
-            {% endfor %}
-            <div>
-                <h2>Teams</h2>
-            </div>
-            <div>
-                <h2>Locations</h2>
-            </div>
-
-
-        </div>
-        <div class="col-xs-4 col-lg-5">
-            <img src="{{ comic.image }}" alt="" />
         </div>
     </div>
-    </div>
-
 </body>
 
 </html>

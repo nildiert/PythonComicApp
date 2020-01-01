@@ -1,3 +1,9 @@
+#!/usr/bin/python3
+"""
+    Controller of the app
+"""
+
+
 from flask import redirect, url_for, render_template, make_response
 import json
 from urllib.error import HTTPError
@@ -10,16 +16,25 @@ app = create_app()
 
 @app.errorhandler(404)
 def not_found(error):
+    """
+        Error handler to manage the 404 errors
+    """
     return render_template('404.html', error=error)
 
 @app.route('/')
 def home():
+    """
+        Home route that redirects to /comics route
+    """
     response = make_response(redirect('/comics'))
 
     return response
 
 @app.route('/comics', methods=['GET'])
 def index():
+    """
+        Route that returns the index template and shows the latest comics
+    """
     issues_url = config.issues_url.format(config.api_key)
 
     try:
@@ -29,8 +44,7 @@ def index():
                 "id": item['id'],
                 "name": "{} #{}".format(item['volume']['name'], item['issue_number']),
                 "image": item['image']['original_url']
-                })
-        
+            })
         context = {
             'comics': result
         }
@@ -41,7 +55,10 @@ def index():
 
 @app.route('/comic/<id>')
 def show(id):
-
+    """
+        Route that returns the show template and shows a specific comic
+        id: number with the id of the comic
+    """
     comic = {}
     issue_detail_url = config.issue_detail_url.format(id, config.api_key)
 
@@ -58,12 +75,12 @@ def show(id):
             'teams': teams,
             'locations': locations,
         })
+
         context = {
             'comic': comic
         }
 
         return render_template('show.html', **context)
-
 
     except HTTPError as e:
         return {"Error code": "{}".format(e.code)}

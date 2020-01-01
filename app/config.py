@@ -1,4 +1,12 @@
+#!/usr/bin/python3
+"""
+    Class to handler api_key and urls
+"""
+
 class Config:
+    """
+        Attributes for Config class
+    """
     api_key = '5254c165a43cf4186f83c78079d1bcff35f1c751'
     character_url = "https://comicvine.gamespot.com/api/character/4005-{}/?api_key={}&field_list=image,name&format=json"
     team_url = "https://comicvine.gamespot.com/api/team/4060-{}/?api_key={}&field_list=image,name&format=json"
